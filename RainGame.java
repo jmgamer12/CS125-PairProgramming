@@ -18,12 +18,12 @@ public class RainGame {
 
 	private static final int SLEEP_TIME_IN_MS = 50;
 	private static final int CHAR_HEIGHT_PX = 50;
-	private static final int CHAR_WIDTH_PX = 35;
+	private static final int CHAR_WIDTH_PX = 36;
 	private static final Color TEXT_COLOR = new Color(255, 0, 255);
 	private static final Color BACKGROUND_COLOR = new Color(0, 255, 0);
 	private static final Position2d LEVEL_POSITION = new Position2d(10, 60);
 	private static final Position2d SCORE_POSITION = new Position2d(10, 120);
-
+	
 	/* internal objects */
 	private static class Color {
 		public int red;
@@ -98,10 +98,9 @@ public class RainGame {
 	
 	private static void applyPositionExcitement(Position2d position, String text, int level) {
 		// randomly-assigns position
-		// TODO: find out why these offsets are sometimes allowing generation
-		// outside of screen/on border
 		int textOffset = getHorizontalOffset(text);
-		position.randomize(0, Zen.getZenWidth() - textOffset, CHAR_HEIGHT_PX, Zen.getZenHeight());
+		position.randomize(0, Zen.getZenWidth() - textOffset, CHAR_HEIGHT_PX,
+				Zen.getZenHeight() - CHAR_HEIGHT_PX);
 	}
 
 	private static void applyVelocityExcitement(Velocity2d velocity, int level) {
@@ -193,9 +192,7 @@ public class RainGame {
 			// keys.
 			Zen.setEditText("");
 
-			for (int i = 0; i < user.length(); i++) {
-				// TODO: fix "String index out of range: 0"
-				// not sure how to reproduce in a way other than mashing numbers
+			for (int i = 0; i < user.length() && !text.isEmpty(); i++) {
 				char c = user.charAt(i);
 				if (c == text.charAt(0))
 					text = text.substring(1, text.length());
