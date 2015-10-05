@@ -23,7 +23,7 @@ public class RainGame {
 	private static final Color BACKGROUND_COLOR = new Color(0, 255, 0);
 	private static final Position2d LEVEL_POSITION = new Position2d(10, 60);
 	private static final Position2d SCORE_POSITION = new Position2d(10, 120);
-
+ 
 	/* internal objects */
 	private static class Color {
 		public int red;
