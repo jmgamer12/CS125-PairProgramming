@@ -105,7 +105,6 @@ public class Zen extends JApplet {
 				zen.init();
 				frame.pack();
 				frame.setVisible(true);
-
 				zen.start();
 				return zen.master;
 			}

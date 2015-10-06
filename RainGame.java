@@ -1,3 +1,5 @@
+import java.util.Random;
+
 //UIUC CS125 FALL 2014 MP. File: RainGame.java, CS125 Project: PairProgramming, Version: 2015-09-28T22:11:14-0500.040275944
 
 /**
@@ -7,6 +9,7 @@
  */
 public class RainGame {
 	
+	static Random rand = new Random();
 	/* constant declarations */
 	private static final Position2d DEFAULT_POSITION = new Position2d(0,
 			Zen.getZenHeight() / 2);
@@ -153,7 +156,27 @@ public class RainGame {
 		Velocity2d velocity = DEFAULT_VELOCITY.clone();
 
 		long startTime = System.currentTimeMillis();
-
+		
+		TextIO.putln("Enter 99 to skip to level 6. Enter 1 for Easy Mode (Level 1). Enter 42 for Random Difficulty.");
+		int levelSkipCommand = TextIO.getlnInt();
+		
+		if (levelSkipCommand == 99) {
+			level = 5;
+			TextIO.putln("Congrats tryhard! Return to game.");
+			Zen.isRunning();
+		}
+		else if (levelSkipCommand == 1){
+			level = 0;
+			TextIO.putln("Easy does it. Return to game.");
+			Zen.isRunning();
+		}
+		else if (levelSkipCommand == 42) {
+			level = rand.nextInt(21);
+			TextIO.putln("Haha good luck man. Return to game.");
+			Zen.isRunning();
+			
+		}
+		
 		while (Zen.isRunning()) {
 
 			// reset condition
